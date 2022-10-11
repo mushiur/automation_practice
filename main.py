@@ -95,6 +95,11 @@ element.send_keys(phone)
 element = driver.find_element("id", "phone_mobile")
 element.send_keys(phone)
 
+element = driver.find_element("id", "alias")
+element.send_keys(address)
+
+driver.find_element("xpath", "//button[@id='submitAccount']").click()
+
 
 # driver.close()  # current focus browser
 # driver.quit()  # this will close all the browser
