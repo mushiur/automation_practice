@@ -1,7 +1,9 @@
-import time
-
+import random
+import string
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.by import By
 
 
 class Test1:
@@ -61,9 +63,8 @@ class Test1:
         self.driver.implicitly_wait(20)
 
     def add_cart(self):
-        self.driver.implicitly_wait(20)
-        self.driver.find_element("xpath", "//span[normalize-space()='Add to cart']").click()
-        self.driver.implicitly_wait(20)
+        self.driver.find_element(By.LINK_TEXT, "Faded Short Sleeve T-shirts").click()
+        self.driver.find_element("xpath", "//button[@name='Submit']").click()
 
     def pro_checkout(self):
         self.driver.find_element("xpath", "//span[normalize-space()='Proceed to checkout']").click()
@@ -77,15 +78,21 @@ class Test1:
         self.driver.quit()
 
 
+def random_char(char_num):
+    return ''.join(random.choice(string.ascii_letters) for _ in range(char_num))
+
+
+x = random_char(7) + "@gmail.com"
+
 test1 = Test1()
 test1.setup_method()
 test1.test_1()
 test1.sign_in()
-test1.email_field("xsds21st@gmail.com")
+test1.email_field(x)
 test1.personal_information("rifa", "ra", "Robi@123")  # first name, last name , password
 test1.dob(12, "February", 1997)
 test1.y_address("12/2,Gulshan,Red.dot", "Chicago", "Florida", "33034", "01876006208")
 test1.search_box()
 test1.add_cart()
 test1.pro_checkout()
-# test1.quit()
+test1.quit()
